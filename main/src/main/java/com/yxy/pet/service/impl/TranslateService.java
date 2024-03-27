@@ -9,7 +9,6 @@ import com.yxy.pet.domain.dto.WxUserDTO;
 import com.yxy.pet.domain.entity.PredictionResult;
 import com.yxy.pet.domain.entity.ResnetResult;
 import com.yxy.pet.domain.entity.TranslatedImg;
-import com.yxy.pet.domain.model.ResponseMsg;
 import com.yxy.pet.mapper.ResnetResultMapper;
 import com.yxy.pet.mapper.TranslatedImgMapper;
 import io.swagger.models.auth.In;
