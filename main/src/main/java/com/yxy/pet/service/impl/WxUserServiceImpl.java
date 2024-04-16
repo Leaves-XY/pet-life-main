@@ -106,6 +106,17 @@ public class WxUserServiceImpl implements WxUserService {
         return WxUserVO.fromWxUser(wxUser);
     }
 
+    @Override
+    public WxUserVO getUserInfoById(String id) {
+        WxUser wxUser = wxUserMapper.selectOne(Wrappers.<WxUser>lambdaQuery().eq(WxUser::getId, id));
+        if (ObjectUtils.isEmpty(wxUser)) {
+            log.info("未查询到用户信息，openId={}", id);
+            return null;
+        }
+        log.info("执行成功[查询用户信息]");
+        return WxUserVO.fromWxUser(wxUser);
+    }
+
     /**
      * 获取用户手机号码
      * @param sessionKey

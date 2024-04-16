@@ -150,4 +150,37 @@ public class TranslateService {
         translatedImgMapper.deleteById(id);
         return AppResp.succeed("删除成功");
     }
+
+    public AppResp<PredictionResult> saveWxyyPredictResult(String openId,String url,@RequestBody PredictionResult predictionResult){
+
+        TranslatedImg translatedImg = new TranslatedImg();
+
+        translatedImg.setUserOpenId(openId);
+
+        translatedImg.setUrl(url);
+
+        translatedImgMapper.insert(translatedImg);
+
+        Integer translatedId = translatedImg.getId();
+
+
+        if (predictionResult==null){
+            return AppResp.failed(-1L,"解析失败,请联系管理员");
+        }
+        // 遍历所有预测结果
+        for (Map.Entry<String, ResnetResult> entry : predictionResult.getResnetResult().entrySet()) {
+            ResnetResult resnetResult = entry.getValue();
+
+            resnetResult.setPredictId(translatedId.toString());
+
+            resnetResult.setUserOpenId(openId);
+
+            resnetResultMapper.insert(resnetResult);
+
+            log.info("上传图片成功:"+resnetResult.getImg());
+
+        }
+        log.info("解析成功:"+predictionResult);
+        return AppResp.succeed(predictionResult, "解析成功");
+    }
 }

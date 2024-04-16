@@ -43,4 +43,6 @@ public interface WxUserService {
     WxUserVO phoneLogin(String phone, String password);
 
     Boolean updateUser(WxUserDTO req);
+
+    WxUserVO getUserInfoById(String id);
 }
