@@ -42,6 +42,9 @@ public class PredictionResult implements Serializable {
     @JsonProperty("all_time")
     private double allTime;
 
+    @JsonProperty("title")
+    private String title;
+
     /**
      * 0-正常 1-删除
      */

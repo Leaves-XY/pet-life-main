@@ -26,6 +26,10 @@ public class TranslatedImg implements Serializable {
 
     private String url;
 
+    private String title;
+
+    private String source;
+
     /**
      * 0-正常 1-删除
      */

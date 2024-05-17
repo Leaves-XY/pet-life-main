@@ -27,11 +27,14 @@ public class WxyyController {
     private WxUserService wxUserService;
     @PostMapping("savePredictResult")
     public AppResp<PredictionResult> savePredictResult(String userId,String url,@RequestBody PredictionResult predictionResult){
-
         String openId = wxUserService.getUserInfoById(userId).getOpenId();
-
         return translateService.saveWxyyPredictResult(openId,url,predictionResult);
+    }
 
+    @PostMapping("savePredictResultAllUser")
+    public AppResp<PredictionResult> savePredictResultAllUser(String url,@RequestBody PredictionResult predictionResult){
+
+        return translateService.saveWxyyPredictResultAllUser(url,predictionResult);
     }
 
 }

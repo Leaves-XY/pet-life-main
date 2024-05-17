@@ -41,22 +41,30 @@ public class TranslateController {
         return translateService.getList(openId);
     }
 
+    @GetMapping("getListAndWxyy")
+    public AppResp<List<TranslatedImg>> getListAndWxyy(String openId){
+//        if(openId==null||openId.isEmpty()){
+//            return AppResp.failed(-1,"请登录后再操作");
+//        }
+        return translateService.getListAndWxyy(openId);
+    }
+
     @PostMapping("deleteById")
     public AppResp deleteById(String id){
         return translateService.deleteById(id);
     }
 
 
-    @PostMapping("predictImgByFile")
-    public AppResp<PredictionResult> predictByFile(MultipartFile file/*, @RequestBody WxUserDTO wxUserDTO*/){
-        try {
-            WxUserDTO wxUserDTO1 = new WxUserDTO();
-            wxUserDTO1.setOpenId("oAMiG6weVjAXf15wvfBBTPmT_gsk");
-            return translateService.predictByFile(file, wxUserDTO1);
-        } catch (IOException e) {
-            return AppResp.failed(-1,"解析失败:"+e.getMessage());
-        }
-    }
+//    @PostMapping("predictImgByFile")
+//    public AppResp<PredictionResult> predictByFile(MultipartFile file/*, @RequestBody WxUserDTO wxUserDTO*/){
+//        try {
+//            WxUserDTO wxUserDTO1 = new WxUserDTO();
+//            wxUserDTO1.setOpenId("oAMiG6weVjAXf15wvfBBTPmT_gsk");
+//            return translateService.predictByFile(file, wxUserDTO1);
+//        } catch (IOException e) {
+//            return AppResp.failed(-1,"解析失败:"+e.getMessage());
+//        }
+//    }
 
 
 }
