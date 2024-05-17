@@ -55,7 +55,7 @@ public class TranslateService {
 
         translatedImg.setUrl(url);
 
-        Integer translatedId = translatedImg.getId();
+
 
         PredictionResult predictionResult =predictClient.predict(url);
 
@@ -66,7 +66,7 @@ public class TranslateService {
         translatedImg.setTitle(predictionResult.getTitle());
 
         translatedImgMapper.insert(translatedImg);
-
+        Integer translatedId = translatedImg.getId();
 
         // 遍历所有预测结果
         for (Map.Entry<String, ResnetResult> entry : predictionResult.getResnetResult().entrySet()) {
@@ -184,6 +184,8 @@ public class TranslateService {
 
         translatedImg.setUrl(url);
 
+        translatedImg.setTitle(predictionResult.getTitle());
+
         translatedImg.setSource("1");
 
         translatedImgMapper.insert(translatedImg);
@@ -218,6 +220,8 @@ public class TranslateService {
         translatedImg.setUserOpenId("wxyy");
 
         translatedImg.setUrl(url);
+
+        translatedImg.setTitle(predictionResult.getTitle());
 
         translatedImg.setSource("1");
 
