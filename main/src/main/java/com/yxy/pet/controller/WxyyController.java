@@ -37,6 +37,15 @@ public class WxyyController {
         return translateService.saveWxyyPredictResultAllUser(url,predictionResult);
     }
 
+    @PostMapping("savePredictResultByPhone")
+    public AppResp<PredictionResult> savePredictResultByPhone(String phone,String url,@RequestBody PredictionResult predictionResult){
+        WxUser wxUser = wxUserService.getUserInfoByPhone(phone);
+        if(wxUser==null){
+            return AppResp.failed(-1,"用户不存在");
+        }
+        return translateService.saveWxyyPredictResult(wxUser.getOpenId(),url,predictionResult);
+    }
+
 }
 
 

@@ -188,4 +188,9 @@ public class WxUserServiceImpl implements WxUserService {
         return wxUserMapper.update(wxUser, Wrappers.<WxUser>lambdaQuery().eq(WxUser::getOpenId, req.getOpenId())) > 0;
     }
 
+    @Override
+    public WxUser getUserInfoByPhone(String phone) {
+        return wxUserMapper.selectOne(Wrappers.<WxUser>lambdaQuery().eq(WxUser::getPhone, phone));
+    }
+
 }

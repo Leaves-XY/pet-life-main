@@ -2,6 +2,7 @@ package com.yxy.pet.service;
 
 import com.yxy.pet.domain.dto.WxGetPhoneDTO;
 import com.yxy.pet.domain.dto.WxUserDTO;
+import com.yxy.pet.domain.entity.WxUser;
 import com.yxy.pet.domain.vo.WxPhoneVO;
 import com.yxy.pet.domain.vo.WxUserVO;
 
@@ -45,4 +46,6 @@ public interface WxUserService {
     Boolean updateUser(WxUserDTO req);
 
     WxUserVO getUserInfoById(String id);
+
+    WxUser getUserInfoByPhone(String phone);
 }
