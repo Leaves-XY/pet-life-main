@@ -176,11 +176,9 @@ public class TranslateService {
         return AppResp.succeed("删除成功");
     }
 
-    public AppResp<PredictionResult> saveWxyyPredictResult(String openId,String url,@RequestBody PredictionResult predictionResult){
+    public AppResp<Integer> saveWxyyPredictResult(String url,@RequestBody PredictionResult predictionResult){
 
         TranslatedImg translatedImg = new TranslatedImg();
-
-        translatedImg.setUserOpenId(openId);
 
         translatedImg.setUrl(url);
 
@@ -202,15 +200,13 @@ public class TranslateService {
 
             resnetResult.setPredictId(translatedId.toString());
 
-            resnetResult.setUserOpenId(openId);
-
             resnetResultMapper.insert(resnetResult);
 
             log.info("上传图片成功:"+resnetResult.getImg());
 
         }
         log.info("解析成功:"+predictionResult);
-        return AppResp.succeed(predictionResult, "解析成功");
+        return AppResp.succeed(translatedId, "保存成功");
     }
 
     public AppResp<PredictionResult> saveWxyyPredictResultAllUser(String url,@RequestBody PredictionResult predictionResult){
@@ -251,5 +247,20 @@ public class TranslateService {
     }
 
 
+    public AppResp<TranslatedImg> savePredictResultMatchPhone(String id, String openId) {
+        TranslatedImg translatedImg = translatedImgMapper.selectById(id);
+        translatedImg.setUserOpenId(openId);
+        translatedImgMapper.updateById(translatedImg);
+
+        // 更新所有预测结果的openId
+//        List<ResnetResult> resnetResults = resnetResultMapper.selectList(new QueryWrapper<ResnetResult>().eq("predict_id", id));
+//        for (ResnetResult resnetResult1 : resnetResults) {
+//            resnetResult1.setUserOpenId(openId);
+//            resnetResultMapper.updateById(resnetResult1);
+//        }
+
+        return AppResp.succeed(translatedImg,"匹配成功");
+
+    }
 }
 

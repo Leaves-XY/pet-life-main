@@ -26,9 +26,8 @@ public class WxyyController {
     private TranslateService translateService;
     private WxUserService wxUserService;
     @PostMapping("savePredictResult")
-    public AppResp<PredictionResult> savePredictResult(String userId,String url,@RequestBody PredictionResult predictionResult){
-        String openId = wxUserService.getUserInfoById(userId).getOpenId();
-        return translateService.saveWxyyPredictResult(openId,url,predictionResult);
+    public AppResp<Integer> savePredictResult(String url,@RequestBody PredictionResult predictionResult){
+        return translateService.saveWxyyPredictResult(url,predictionResult);
     }
 
     @PostMapping("savePredictResultAllUser")
@@ -37,13 +36,24 @@ public class WxyyController {
         return translateService.saveWxyyPredictResultAllUser(url,predictionResult);
     }
 
-    @PostMapping("savePredictResultByPhone")
-    public AppResp<PredictionResult> savePredictResultByPhone(String phone,String url,@RequestBody PredictionResult predictionResult){
+
+
+    @PostMapping("savePredictResultMatchPhone")
+    public AppResp<TranslatedImg> savePredictResultMatchPhone(String id,String phone){
         WxUser wxUser = wxUserService.getUserInfoByPhone(phone);
         if(wxUser==null){
             return AppResp.failed(-1,"用户不存在");
         }
-        return translateService.saveWxyyPredictResult(wxUser.getOpenId(),url,predictionResult);
+        return translateService.savePredictResultMatchPhone(id,wxUser.getOpenId());
+    }
+
+    @PostMapping("savePredictResultByPhone")
+    public AppResp<Integer> savePredictResultByPhone(String phone,String url,@RequestBody PredictionResult predictionResult){
+        WxUser wxUser = wxUserService.getUserInfoByPhone(phone);
+        if(wxUser==null){
+            return AppResp.failed(-1,"用户不存在");
+        }
+        return translateService.saveWxyyPredictResult(url,predictionResult);
     }
 
 }
