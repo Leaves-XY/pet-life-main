@@ -2,8 +2,8 @@ server:
   port: 9998
   #ssl
   ssl:
-     key-store: classpath:yexingyi.love.jks
-     key-store-password: f0xoalnn
+     key-store: classpath:yexingyi.cn.jks
+     key-store-password: n9pfjmvr
      key-store-type: JKS
 
 

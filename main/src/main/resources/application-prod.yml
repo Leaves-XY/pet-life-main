@@ -42,6 +42,7 @@ wechat:
     access-token-api-url: https://api.weixin.qq.com/sns/jscode2session
 
 translation:
+  #人工智能接口
   predict:
     url-file: http://39.105.187.217:8101/predict
     url: http://39.105.187.217:8101/predict_url
