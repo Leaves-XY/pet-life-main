@@ -43,9 +43,9 @@ spring:
 wechat:
   # 微信小程序
   applet:
-    app-id: wx04bf50bd25925567
-    app-secret: 73573a0019739716c0fb7ae238c97dd8
-    access-token-api-url: https://api.weixin.qq.com/sns/jscode2session
+    app-id: 
+    app-secret: 
+    access-token-api-url:
 
 # 打印 sql 语句到控制台
 #mybatis-plus:
